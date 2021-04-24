@@ -1,18 +1,30 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { CoreModule } from '@custom-modules/core.module';
+import { NavbarComponent } from './pages/components';
+import { ComicsComponent } from './pages/comics/comics.component';
+import { CharactersComponent } from './pages/characters/characters.component';
+import { StoriesComponent } from './pages/stories/stories.component';
+import { InputComponent } from './pages/components/input/input.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    ComicsComponent,
+    CharactersComponent,
+    StoriesComponent,
+    InputComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    CoreModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

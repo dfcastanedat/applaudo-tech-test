@@ -1,0 +1,44 @@
+@import "__settings-dir";
+@import "__tools-dir";
+
+.navbar {
+  width: 100vw;
+  height: 5vh;
+  background-color: $background-dark;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.navbar__brand {
+  width: 3em;
+  cursor: pointer;
+}
+
+.navbar__navigation {
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.navbar__item {
+  font-family: $font-Roboto-Condensed-Bold;
+  color: $background-clear;
+  text-decoration: none;
+  margin: 0 0.5em;
+  height: 5vh;
+  &--active {
+    color: $marvel-red;
+    border-bottom: 3px solid $marvel-red;
+  }
+}
+
+@include screen-small {
+  .navbar {
+    font-size: 16px;
+  }
+  .navbar__navigation {
+    right: 40%;
+  }
+}

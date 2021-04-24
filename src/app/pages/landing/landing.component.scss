@@ -1,0 +1,16 @@
+@import "__settings-dir";
+
+.landing {
+  height: 95vh;
+  width: 100vw;
+  background-color: $background-clear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.landing__logo {
+  width: 10em;
+  margin-bottom: 1em;
+}

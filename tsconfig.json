@@ -15,6 +15,23 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@domain/*": [
+        "src/app/domain/*"
+      ],
+      "@interceptors/*": [
+        "src/app/interceptors/*"
+      ],
+      "@custom-modules/*": [
+        "src/app/custom-modules/*"
+      ],
+      "@utils/*": [
+        "src/app/utils/*"
+      ],
+      "@pages/*": [
+        "src/app/pages/*"
+      ]
+    }
   }
 }

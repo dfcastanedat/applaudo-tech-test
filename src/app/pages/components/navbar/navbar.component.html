@@ -1,0 +1,7 @@
+<div class="navbar">
+    <img alt="Brand" title="Brand" src="assets/marvelLogo.svg" class="navbar__brand" [routerLink]="homeUrl">
+    <div class="navbar__navigation">
+        <a *ngFor="let item of navbarItems" class="navbar__item" [routerLink]="item.url"
+            routerLinkActive="navbar__item--active">{{item.name}}</a>
+    </div>
+</div>
