@@ -1,0 +1,15 @@
+@import "__settings-dir";
+@import "__tools-dir";
+
+.button {
+  background-color: $marvel-red;
+  font-family: $font-Roboto-Condensed-Bold;
+  font-size: 24px;
+  padding: 0.25em 0.5em;
+}
+
+@include screen-small {
+  .button {
+    font-size: 18px;
+  }
+}

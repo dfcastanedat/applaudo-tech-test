@@ -8,6 +8,10 @@ import { ComicsComponent } from './pages/comics/comics.component';
 import { CharactersComponent } from './pages/characters/characters.component';
 import { StoriesComponent } from './pages/stories/stories.component';
 import { InputComponent } from './pages/components/input/input.component';
+import { LandingComponent } from '@pages/landing/landing.component';
+import { ButtonComponent } from './pages/components/button/button.component';
+import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
+import { LoadingComponent } from './pages/components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,10 @@ import { InputComponent } from './pages/components/input/input.component';
     CharactersComponent,
     StoriesComponent,
     InputComponent,
+    LandingComponent,
+    ButtonComponent,
+    ItemDetailComponent,
+    LoadingComponent,
   ],
   imports: [
     CoreModule,
@@ -24,7 +32,6 @@ import { InputComponent } from './pages/components/input/input.component';
       enabled: environment.production,
     }),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

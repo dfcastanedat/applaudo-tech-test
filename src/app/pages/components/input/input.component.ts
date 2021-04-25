@@ -1,15 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
+import { DETAIL_ROUTE } from '@utils/constants';
+import { IPreviewResult } from '@utils/interfaces';
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
+  @Input() previewResults: IPreviewResult[];
 
-  constructor() { }
+  @Input() placeHolder: string;
 
-  ngOnInit(): void {
+  @Input() label: string;
+
+  @Input()
+  labelStyle: { [key: string]: string } = {};
+
+  fControl: FormControl = new FormControl();
+
+  @Input('fControl')
+  set onFormControlChange(fControl: AbstractControl) {
+    if (fControl) {
+      this.fControl = fControl as FormControl;
+    }
   }
 
+  get controlHasError(): boolean {
+    return this.fControl?.errors ? true : false;
+  }
+
+  get controlErrorMessage(): string | null {
+    const control = this.fControl;
+    const errors = control?.errors;
+    if (errors?.required && control?.touched) {
+      return 'This field is necesary';
+    }
+    return null;
+  }
+
+  getItemLink(index: number): string {
+    return `${DETAIL_ROUTE}/${this.previewResults[index].type}/${this.previewResults[index].itemId}`;
+  }
 }

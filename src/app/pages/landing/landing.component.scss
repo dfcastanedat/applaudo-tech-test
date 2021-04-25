@@ -1,16 +1,53 @@
 @import "__settings-dir";
+@import "__tools-dir";
 
 .landing {
   height: 95vh;
   width: 100vw;
   background-color: $background-clear;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: 32px;
+  position: relative;
 }
 
 .landing__logo {
   width: 10em;
   margin-bottom: 1em;
+  margin-top: 5em;
+}
+
+.landing__form {
+  width: 80%;
+  margin: 25px auto 0;
+  display: flex;
+  align-items: center;
+}
+
+.landing__input {
+  width: 100%;
+}
+
+.landing__button {
+  width: 20%;
+  margin-left: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.landing__about {
+  font-family: $font-Roboto-Condensed-LightItalic;
+  position: relative;
+  top: 30%;
+  width: 50%;
+}
+
+@include screen-small {
+  .landing {
+    font-size: 16px;
+  }
+  .landing__logo {
+    margin-top: 10em;
+  }
 }

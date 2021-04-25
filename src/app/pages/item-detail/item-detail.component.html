@@ -1,0 +1,23 @@
+<div class="detail">
+    <div *ngIf="loading" class="detail__loading">
+        <app-loading></app-loading>
+    </div>
+    <ng-container *ngIf="!loading">
+        <ng-container [ngSwitch]="detailType">
+            <ng-container *ngSwitchCase="'character'">
+                <h1 class="detail__title">{{character.name}}</h1>
+                <div class="detail__intro">
+                    <img class="detail__photo"
+                        [src]="getImgUrl(character.thumbnail.path, 'portrait_incredible', character.thumbnail.extension)"
+                        alt="Character" title="Character" />
+                    <div class="detail__description">{{character.description}}</div>
+                </div>
+                <div class="detail__divisor"></div>
+                <div class="detail__subitems1"></div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'comic'">
+                <h1>Esta mondá es un comic</h1>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>

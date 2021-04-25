@@ -1,1 +1,8 @@
-<p>input works!</p>
+<div class="input">
+    <span class="input__label" [ngStyle]="labelStyle">{{label}}</span>
+    <input class="input__field" [placeholder]="placeHolder" [formControl]="fControl" />
+    <div [class]="previewResults.length > 0 ? 'preview' : 'preview preview--empty'">
+        <div class="preview__result" *ngFor="let item of previewResults; index as i" [routerLink]="getItemLink(i)">
+            {{item.name}}</div>
+    </div>
+</div>
