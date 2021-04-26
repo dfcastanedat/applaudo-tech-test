@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DETAIL_ROUTE } from '@utils/constants';
 
 @Component({
   selector: 'app-thubnail-item',

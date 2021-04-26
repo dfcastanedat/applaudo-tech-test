@@ -5,7 +5,6 @@ import { ICharacter } from '@domain/model/interfaces';
 import { IComic } from '@domain/model/interfaces/comic.interface';
 import { getImgUrl } from '@utils/functions/get-img-url.function';
 import { IPreviewResult } from '@utils/interfaces';
-import { ICharactersParams } from '@utils/interfaces/characters-params.interface';
 import { interval } from 'rxjs';
 import { debounce } from 'rxjs/operators';
 
@@ -20,6 +19,7 @@ export class CharactersComponent implements OnInit {
     private readonly comicsService: ComicsService
   ) {}
 
+  firstLoad = false;
   loading = false;
 
   filtersForm = new FormGroup({
@@ -43,55 +43,6 @@ export class CharactersComponent implements OnInit {
   offsetVal = 0;
 
   getImgUrl = getImgUrl;
-
-  ngOnInit(): void {
-    this.getCharacters();
-    this.filtersForm.valueChanges
-      .pipe(debounce(() => interval(500)))
-      .subscribe((value) => {
-        console.log(value);
-        if (
-          this.filtersForm.value.comicId ||
-          this.filtersForm.value.nameStartsWith ||
-          this.filtersForm.value.orderByMethod
-        ) {
-          this.charactersToDisplay = [];
-          this.getCharacters(
-            this.filtersForm.value.nameStartsWith,
-            null,
-            null,
-            this.filtersForm.value.comicId,
-            this.filtersForm.value.orderByMethod
-          );
-        }
-      });
-    this.filtersForm.controls.comics.valueChanges
-      .pipe(debounce(() => interval(500)))
-      .subscribe((value) => {
-        this.previewComics = [];
-        if (value && value.length > 0) {
-          this.comicsService.getComics(value).subscribe((res) => {
-            res.data.results.map((el: IComic) => {
-              const item: IPreviewResult = {
-                name: el.title,
-                itemId: el.id,
-                type: 'filter',
-              };
-              this.previewComics.push(item);
-            });
-          });
-        } else {
-          this.filtersForm.patchValue(
-            {
-              ...this.filtersForm,
-              comics: null,
-              comicId: null,
-            },
-            { emitEvent: false }
-          );
-        }
-      });
-  }
 
   updateComicFilter(item: IPreviewResult): void {
     this.filtersForm.patchValue({
@@ -125,6 +76,7 @@ export class CharactersComponent implements OnInit {
     orderBy?: string,
     offset?: number
   ): void {
+    this.firstLoad = true;
     this.loading = true;
     this.charactersService
       .getCharacters(nameStartsWith, name, stories, comics, orderBy, offset)
@@ -151,5 +103,52 @@ export class CharactersComponent implements OnInit {
     } else {
       console.warn('Max reached');
     }
+  }
+
+  ngOnInit(): void {
+    this.getCharacters();
+    this.filtersForm.valueChanges
+      .pipe(debounce(() => interval(500)))
+      .subscribe((value) => {
+        if (value.comicId || value.nameStartsWith || value.orderByMethod) {
+          this.charactersToDisplay = [];
+          this.getCharacters(
+            value.nameStartsWith,
+            null,
+            null,
+            value.comicId,
+            value.orderByMethod
+          );
+        } else if (this.firstLoad) {
+          this.charactersToDisplay = [];
+          this.getCharacters();
+        }
+      });
+    this.filtersForm.controls.comics.valueChanges
+      .pipe(debounce(() => interval(500)))
+      .subscribe((value) => {
+        this.previewComics = [];
+        if (value && value.length > 0) {
+          this.comicsService.getComics(value).subscribe((res) => {
+            res.data.results.map((el: IComic) => {
+              const item: IPreviewResult = {
+                name: el.title,
+                itemId: el.id,
+                type: 'filter',
+              };
+              this.previewComics.push(item);
+            });
+          });
+        } else {
+          this.filtersForm.patchValue(
+            {
+              ...this.filtersForm,
+              comics: null,
+              comicId: null,
+            },
+            { emitEvent: false }
+          );
+        }
+      });
   }
 }

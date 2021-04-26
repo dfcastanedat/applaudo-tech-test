@@ -1,23 +1,23 @@
-<div class="characters">
-    <form class="characters__filters" [formGroup]="filtersForm">
-        <div class="characters__filters-input">
+<div class="items-master">
+    <form class="items-master__filters" [formGroup]="filtersForm">
+        <div class="items-master__filters-input">
             <app-input [fControl]="filtersForm.controls.nameStartsWith" [placeHolder]="'Filter by name'" [label]="''"
                 [previewResults]="[]">
             </app-input>
         </div>
-        <div class="characters__filters-input">
+        <div class="items-master__filters-input">
 
             <app-input [fControl]="filtersForm.controls.comics" [placeHolder]="'Filter by comics'" [label]="''"
                 [previewResults]="previewComics" (itemSelected)="updateComicFilter($event)">
             </app-input>
         </div>
         <!-- DISABLED DUE ENDPOINT MISSING FILTER BY TITLE 
-            <div class="characters__filters-input">
+            <div class="items-master__filters-input">
             <app-input [fControl]="filtersForm.controls.nameStartsWith" [placeHolder]="'Filter by name'" [label]="''"
                 [previewResults]="[]">
             </app-input>
         </div> -->
-        <div class="characters__filters-input">
+        <div class="items-master__filters-input">
             <app-input [fControl]="filtersForm.controls.orderBy" [placeHolder]="'Order by'" [label]="''"
                 [readonly]="true" [previewResults]="orderByVariables" (touched)="touchedOrderBy()"
                 (itemSelected)="updateOrderByFilter($event)">
@@ -33,7 +33,7 @@
         </app-thubnail-item>
     </div>
     <div *ngIf="loading"
-        [class]="charactersToDisplay.length > 0 ? 'characters__loading new-page' : 'characters__loading'">
+        [class]="charactersToDisplay.length > 0 ? 'items-master__loading new-page' : 'items-master__loading'">
         <app-loading></app-loading>
     </div>
 </div>

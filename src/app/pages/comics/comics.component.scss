@@ -1,0 +1,11 @@
+@import "__tools-dir";
+
+.comics-filter {
+  width: 20%;
+}
+
+@include screen-small {
+  .comics-filter {
+    width: 80%;
+  }
+}

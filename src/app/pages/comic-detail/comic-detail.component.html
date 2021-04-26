@@ -1,0 +1,53 @@
+<div class="detail">
+    <div *ngIf="loading" class="detail__loading">
+        <app-loading></app-loading>
+    </div>
+    <ng-container *ngIf="!loading">
+        <h1 class="detail__title">{{comic.title}}</h1>
+        <div class="detail__intro">
+            <img class="detail__photo"
+                [src]="getImgUrl(comic.thumbnail.path, 'portrait_incredible', comic.thumbnail.extension)"
+                alt="Character" title="Character" />
+            <div class="detail__description">{{comic.description && comic.description.length > 0 ? comic.description :
+                'No description aviable'}}</div>
+        </div>
+        <div class="detail__divisor"></div>
+        <div class="detail__picker">
+            <h1 [class]="!switchSelector ? 'detail__title selector' : 'detail__title selected'"
+                (click)="switchSelector = !switchSelector">CHARACTERS</h1>
+            <h1 [class]="switchSelector ? 'detail__title selector' : 'detail__title selected'"
+                (click)="switchSelector = !switchSelector">STORIES</h1>
+        </div>
+        <ng-container *ngIf="switchSelector">
+            <div class="card__grid detail-items">
+                <app-thubnail-item *ngFor="let item of characters"
+                    [imgUrl]="getImgUrl(item.thumbnail.path, 'portrait_xlarge', item.thumbnail.extension)"
+                    [type]="'character'" [name]="item.name" [itemId]="item.id">
+                </app-thubnail-item>
+                <button (click)="getCharacters(itemId, null, charactersOffset)"
+                    *ngIf="!(this.charactersOffset + 20 >= this.totalCharactersAviable + 20)">
+                    LOAD MORE
+                </button>
+                <div [class]="characters.length > 0 ? 'detail__loading-items with-content': 'detail__loading-items'"
+                    *ngIf="charactersLoading">
+                    <app-loading></app-loading>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!switchSelector">
+            <div class="card__grid detail-items">
+                <app-thubnail-item *ngFor="let item of stories" [type]="'storie'" [name]="item.title"
+                    [itemId]="item.id">
+                </app-thubnail-item>
+                <button (click)="getStories(itemId, storiesOffset)"
+                    *ngIf="!(this.storiesOffset + 20 >= this.totalStoriesAviable + 20)">
+                    LOAD MORE
+                </button>
+                <div [class]="stories.length > 0 ? 'detail__loading-items with-content': 'detail__loading-items'"
+                    *ngIf="storiesLoading">
+                    <app-loading></app-loading>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

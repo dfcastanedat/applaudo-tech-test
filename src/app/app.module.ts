@@ -10,8 +10,10 @@ import { StoriesComponent } from './pages/stories/stories.component';
 import { InputComponent } from './pages/components/input/input.component';
 import { LandingComponent } from '@pages/landing/landing.component';
 import { ButtonComponent } from './pages/components/button/button.component';
-import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
+import { CharacterDetailComponent } from './pages/character-detail/character-detail.component';
 import { LoadingComponent } from './pages/components/loading/loading.component';
+import { StorieDetailComponent } from './pages/storie-detail/storie-detail.component';
+import { ComicDetailComponent } from './pages/comic-detail/comic-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import { LoadingComponent } from './pages/components/loading/loading.component';
     InputComponent,
     LandingComponent,
     ButtonComponent,
-    ItemDetailComponent,
+    CharacterDetailComponent,
     LoadingComponent,
     ThubnailItemComponent,
+    StorieDetailComponent,
+    ComicDetailComponent,
   ],
   imports: [
     CoreModule,

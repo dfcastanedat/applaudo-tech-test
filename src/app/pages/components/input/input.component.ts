@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
-import { DETAIL_ROUTE } from '@utils/constants';
 import { IPreviewResult } from '@utils/interfaces';
 @Component({
   selector: 'app-input',
@@ -49,7 +48,7 @@ export class InputComponent {
   }
 
   getItemLink(index: number): string {
-    return `${DETAIL_ROUTE}/${this.previewResults[index].type}/${this.previewResults[index].itemId}`;
+    return `${this.previewResults[index].type}/${this.previewResults[index].itemId}`;
   }
 
   selectedItem(i: number): void {

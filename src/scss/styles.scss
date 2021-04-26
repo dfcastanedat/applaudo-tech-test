@@ -26,6 +26,21 @@ body {
   &.detail-items {
     height: 50vh;
     overflow-y: auto;
+    width: 80vw;
+    margin: 1em 0 5em;
+  }
+}
+
+.detail__loading-items {
+  height: 50vh;
+  width: 80vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.with-content {
+    height: 100px;
+    width: auto;
   }
 }
 
@@ -34,6 +49,120 @@ button {
   font-family: $font-Roboto-Condensed-Bold;
   font-size: 24px;
   padding: 0.25em 0.5em;
+}
+
+// CARDS MASTER //
+
+.items-master {
+  font-size: 24px;
+  min-height: 95vh;
+  background-color: lighten($background-dark-grey, 80);
+}
+
+.items-master__loading {
+  width: 100vw;
+  height: 94vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.new-page {
+    height: 10vh;
+  }
+}
+
+.items-master__filters {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.items-master__filters-input {
+  width: 28%;
+}
+
+.items-master__cards {
+  font-size: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 2em 2em;
+  width: 90%;
+  padding: 1em 2em;
+  margin: 0 auto;
+}
+
+// DETAIL COMPONENTS //
+
+.detail {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: lighten($background-dark-grey, 80);
+}
+
+.detail__loading {
+  height: 94vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail__intro {
+  display: flex;
+  font-size: 24px;
+  font-family: $font-Roboto-Condensed-Regular;
+  width: 80vw;
+  margin-top: 1.5em;
+}
+
+.detail__picker {
+  display: flex;
+  width: 80vw;
+}
+
+.detail__title {
+  font-size: 48px;
+  font-family: $font-Roboto-Condensed-Bold;
+  margin: 0.5em 0 0.5em;
+  text-transform: uppercase;
+  &.selector {
+    font-size: 32px;
+    margin: 0 0.2em;
+    cursor: pointer;
+  }
+  &.selected {
+    font-size: 32px;
+    margin: 0 0.2em;
+    cursor: pointer;
+    text-decoration: underline;
+    color: $marvel-red;
+  }
+}
+
+.detail__photo {
+  width: 30%;
+}
+
+.detail__description {
+  background-color: $background-dark-grey;
+  color: $background-clear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  padding: 2em;
+  width: 70%;
+}
+
+.detail__divisor {
+  margin: 1em auto;
+  width: 80vw;
+  content: "";
+  font-size: 24px;
+  height: 0.2em;
+  background-color: $marvel-red;
 }
 
 @include screen-small {
@@ -46,5 +175,48 @@ button {
   }
   button {
     font-size: 18px;
+  }
+
+  //CARDS MASTER
+
+  .items-master__cards {
+    font-size: 16px;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    width: 80%;
+    margin: 0;
+  }
+
+  .items-master__filters {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  .items-master__filters-input {
+    width: 80%;
+    margin: 0.3em 0;
+  }
+
+  // DETAIL COMPONENTS //
+
+  .detail__photo {
+    margin: 0 auto;
+  }
+  .detail__intro {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+  }
+  .detail__photo {
+    width: 100%;
+  }
+  .detail__description {
+    font-size: 18px;
+  }
+  .detail__title {
+    font-size: 24px;
   }
 }

@@ -1,16 +1,20 @@
 import { Routes } from '@angular/router';
 import { CharactersComponent } from '@pages/characters/characters.component';
 import { ComicsComponent } from '@pages/comics/comics.component';
-import { ItemDetailComponent } from '@pages/item-detail/item-detail.component';
+import { CharacterDetailComponent } from '@pages/character-detail/character-detail.component';
 import { LandingComponent } from '@pages/landing/landing.component';
 import { StoriesComponent } from '@pages/stories/stories.component';
 import {
   BASE_ROUTE,
   CHARACTERS_ROUTE,
+  CHARACTER_DETAIL_ROUTE,
   COMICS_ROUTE,
-  DETAIL_ROUTE,
+  COMIC_DETAIL_ROUTE,
   STORIES_ROUTE,
+  STORIE_DETAIL_ROUTE,
 } from '@utils/constants';
+import { ComicDetailComponent } from '@pages/comic-detail/comic-detail.component';
+import { StorieDetailComponent } from '@pages/storie-detail/storie-detail.component';
 
 export const ROUTES: Routes = [
   {
@@ -30,8 +34,15 @@ export const ROUTES: Routes = [
     component: StoriesComponent,
   },
   {
-    path: `${DETAIL_ROUTE}/:type/:id`,
-    component: ItemDetailComponent,
-    pathMatch: 'prefix',
+    path: `${CHARACTER_DETAIL_ROUTE}/:id`,
+    component: CharacterDetailComponent,
+  },
+  {
+    path: `${COMIC_DETAIL_ROUTE}/:id`,
+    component: ComicDetailComponent,
+  },
+  {
+    path: `${STORIE_DETAIL_ROUTE}/:id`,
+    component: StorieDetailComponent,
   },
 ];
