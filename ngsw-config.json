@@ -1,6 +1,21 @@
 {
   "$schema": "./node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
+  "dataGroups": [
+    {
+      "name": "getComics",
+      "urls": [
+        "comics",
+        "character"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "15s",
+        "maxAge": "20s",
+        "maxSize": 100
+      }
+    }
+  ],
   "assetGroups": [
     {
       "name": "app",
