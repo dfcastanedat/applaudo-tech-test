@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { buildParams, getApiUrl } from '@utils/functions';
 import { SearchMethodApiController } from '@utils/enums';
@@ -14,18 +14,25 @@ export class CharactersService {
   constructor(private readonly http: HttpClient) {}
 
   getCharacters(
+    nameStartsWith?: string,
     name?: string,
-    storiesId?: number,
-    comicId?: number,
-    orderBy?: boolean
+    stories?: number,
+    comics?: number,
+    orderBy?: string,
+    offset?: number
   ): Observable<IResponseApiWrapper<IDataContainer<ICharacter>>> {
-    const params = buildParams({ name, storiesId, comicId, orderBy });
+    const params = buildParams<ICharactersParams>({
+      nameStartsWith,
+      name,
+      stories,
+      comics,
+      orderBy,
+      offset,
+    });
     return this.http.get<IResponseApiWrapper<IDataContainer<ICharacter>>>(
       getApiUrl(SearchMethodApiController.CHARACTERS),
       {
-        params: {
-          nameStartsWith: params.name,
-        },
+        params,
       }
     );
   }

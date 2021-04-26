@@ -38,6 +38,7 @@
   position: absolute;
   width: 100%;
   transition: height 0.3s ease-in-out;
+  z-index: 100;
   &.preview--empty {
     height: 0;
     padding: 0;
@@ -47,7 +48,6 @@
 .preview__result {
   width: 100%;
   cursor: pointer;
-  height: 1.5em;
   &:hover {
     background-color: lighten($background-dark-grey, 50);
   }

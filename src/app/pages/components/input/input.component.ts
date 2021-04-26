@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 import { DETAIL_ROUTE } from '@utils/constants';
 import { IPreviewResult } from '@utils/interfaces';
@@ -16,6 +16,15 @@ export class InputComponent {
 
   @Input()
   labelStyle: { [key: string]: string } = {};
+
+  @Input()
+  readonly = false;
+
+  @Output()
+  itemSelected = new EventEmitter();
+
+  @Output()
+  touched = new EventEmitter();
 
   fControl: FormControl = new FormControl();
 
@@ -41,5 +50,13 @@ export class InputComponent {
 
   getItemLink(index: number): string {
     return `${DETAIL_ROUTE}/${this.previewResults[index].type}/${this.previewResults[index].itemId}`;
+  }
+
+  selectedItem(i: number): void {
+    this.itemSelected.emit(this.previewResults[i]);
+  }
+
+  touchedInput(): void {
+    this.touched.emit(true);
   }
 }

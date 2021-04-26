@@ -1,3 +1,50 @@
+@import "__settings-dir";
+@import "__tools-dir";
+
 body {
   margin: 0;
+  overflow-x: hidden;
+}
+
+.divisor {
+  margin: 0.5em auto;
+  width: 90%;
+  content: "";
+  font-size: 24px;
+  height: 0.2em;
+  background-color: $marvel-red;
+}
+
+.card__grid {
+  font-size: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 2em 2em;
+  width: 90%;
+  padding: 1em 2em;
+  margin: 0 auto;
+  &.detail-items {
+    height: 50vh;
+    overflow-y: auto;
+  }
+}
+
+button {
+  background-color: $marvel-red;
+  font-family: $font-Roboto-Condensed-Bold;
+  font-size: 24px;
+  padding: 0.25em 0.5em;
+}
+
+@include screen-small {
+  .card__grid {
+    font-size: 16px;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    width: 80%;
+    margin: 0;
+  }
+  button {
+    font-size: 18px;
+  }
 }

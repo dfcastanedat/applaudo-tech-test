@@ -1,1 +1,39 @@
-<p>characters works!</p>
+<div class="characters">
+    <form class="characters__filters" [formGroup]="filtersForm">
+        <div class="characters__filters-input">
+            <app-input [fControl]="filtersForm.controls.nameStartsWith" [placeHolder]="'Filter by name'" [label]="''"
+                [previewResults]="[]">
+            </app-input>
+        </div>
+        <div class="characters__filters-input">
+
+            <app-input [fControl]="filtersForm.controls.comics" [placeHolder]="'Filter by comics'" [label]="''"
+                [previewResults]="previewComics" (itemSelected)="updateComicFilter($event)">
+            </app-input>
+        </div>
+        <!-- DISABLED DUE ENDPOINT MISSING FILTER BY TITLE 
+            <div class="characters__filters-input">
+            <app-input [fControl]="filtersForm.controls.nameStartsWith" [placeHolder]="'Filter by name'" [label]="''"
+                [previewResults]="[]">
+            </app-input>
+        </div> -->
+        <div class="characters__filters-input">
+            <app-input [fControl]="filtersForm.controls.orderBy" [placeHolder]="'Order by'" [label]="''"
+                [readonly]="true" [previewResults]="orderByVariables" (touched)="touchedOrderBy()"
+                (itemSelected)="updateOrderByFilter($event)">
+            </app-input>
+        </div>
+    </form>
+    <div class="divisor"></div>
+    <div class="card__grid" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
+        (scrolled)="onScrollDown()">
+        <app-thubnail-item *ngFor="let character of charactersToDisplay"
+            [imgUrl]="getImgUrl(character.thumbnail.path, 'portrait_xlarge', character.thumbnail.extension)"
+            [type]="'character'" [name]="character.name" [itemId]="character.id">
+        </app-thubnail-item>
+    </div>
+    <div *ngIf="loading"
+        [class]="charactersToDisplay.length > 0 ? 'characters__loading new-page' : 'characters__loading'">
+        <app-loading></app-loading>
+    </div>
+</div>

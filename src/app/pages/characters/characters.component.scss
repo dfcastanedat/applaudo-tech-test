@@ -1,0 +1,63 @@
+@import "__settings-dir";
+@import "__tools-dir";
+
+.characters {
+  font-size: 24px;
+  min-height: 95vh;
+  background-color: lighten($background-dark-grey, 80);
+}
+
+.characters__loading {
+  width: 100vw;
+  height: 94vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.new-page {
+    height: 10vh;
+  }
+}
+
+.characters__filters {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.characters__filters-input {
+  width: 28%;
+}
+
+.characters__cards {
+  font-size: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 2em 2em;
+  width: 90%;
+  padding: 1em 2em;
+  margin: 0 auto;
+}
+
+@include screen-small {
+  .characters__cards {
+    font-size: 16px;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    width: 80%;
+    margin: 0;
+  }
+
+  .characters__filters {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  .characters__filters-input {
+    width: 80%;
+    margin: 0.3em 0;
+  }
+}

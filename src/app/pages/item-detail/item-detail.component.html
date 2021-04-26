@@ -10,10 +10,32 @@
                     <img class="detail__photo"
                         [src]="getImgUrl(character.thumbnail.path, 'portrait_incredible', character.thumbnail.extension)"
                         alt="Character" title="Character" />
-                    <div class="detail__description">{{character.description}}</div>
+                    <div class="detail__description">{{character.description.length>0 ? character.description :
+                        'No description aviable'}}</div>
                 </div>
                 <div class="detail__divisor"></div>
-                <div class="detail__subitems1"></div>
+                <h1 class="detail__title">COMICS</h1>
+                <div class="card__grid detail-items">
+                    <app-thubnail-item *ngFor="let item of comics"
+                        [imgUrl]="getImgUrl(item.thumbnail.path, 'portrait_xlarge', item.thumbnail.extension)"
+                        [type]="'comic'" [name]="item.title" [itemId]="item.id">
+                    </app-thubnail-item>
+                    <button (click)="getComics(itemId, null, comicsOffset)"
+                        *ngIf="!(this.comicsOffset + 20 >= this.totalComicsAviable + 20)">
+                        LOAD MORE
+                    </button>
+                </div>
+                <div class="detail__divisor"></div>
+                <h1 class="detail__title">STORIES</h1>
+                <div class="card__grid detail-items">
+                    <app-thubnail-item *ngFor="let item of stories" [type]="'storie'" [name]="item.title"
+                        [itemId]="item.id">
+                    </app-thubnail-item>
+                    <button (click)="getStories(itemId, null, storiesOffset)"
+                        *ngIf="!(this.storiesOffset + 20 >= this.totalStoriesAviable + 20)">
+                        LOAD MORE
+                    </button>
+                </div>
             </ng-container>
             <ng-container *ngSwitchCase="'comic'">
                 <h1>Esta mondá es un comic</h1>

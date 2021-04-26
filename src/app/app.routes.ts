@@ -32,5 +32,6 @@ export const ROUTES: Routes = [
   {
     path: `${DETAIL_ROUTE}/:type/:id`,
     component: ItemDetailComponent,
+    pathMatch: 'prefix',
   },
 ];

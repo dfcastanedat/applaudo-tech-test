@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CoreModule } from '@custom-modules/core.module';
-import { NavbarComponent } from './pages/components';
+import { NavbarComponent, ThubnailItemComponent } from './pages/components';
 import { ComicsComponent } from './pages/comics/comics.component';
 import { CharactersComponent } from './pages/characters/characters.component';
 import { StoriesComponent } from './pages/stories/stories.component';
@@ -25,11 +25,13 @@ import { LoadingComponent } from './pages/components/loading/loading.component';
     ButtonComponent,
     ItemDetailComponent,
     LoadingComponent,
+    ThubnailItemComponent,
   ],
   imports: [
     CoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
+      registrationStrategy: 'registerImmediately',
     }),
   ],
   bootstrap: [AppComponent],

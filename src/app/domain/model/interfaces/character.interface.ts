@@ -1,4 +1,6 @@
 import { IUrls } from '@utils/interfaces';
+import { IComic } from './comic.interface';
+import { IStorie } from './storie.interface';
 
 export interface ICharacter {
   id: number;
@@ -11,6 +13,6 @@ export interface ICharacter {
     path: string;
     extension: string;
   };
-  comics: any[];
-  stories: any[];
+  comics: IComic[];
+  stories: IStorie[];
 }

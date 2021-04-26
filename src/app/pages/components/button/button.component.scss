@@ -1,7 +1,7 @@
 @import "__settings-dir";
 @import "__tools-dir";
 
-.button {
+button {
   background-color: $marvel-red;
   font-family: $font-Roboto-Condensed-Bold;
   font-size: 24px;
@@ -9,7 +9,7 @@
 }
 
 @include screen-small {
-  .button {
+  button {
     font-size: 18px;
   }
 }

@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start-pwa": "ng build --prod && http-server -p 8080 -c-1 dist/applaudo-tech-test"
+    "start-pwa": "ng build --prod --base-href http://127.0.0.1:8080/ && http-server -p 8080 -c-1 dist/applaudo-tech-test"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +22,7 @@
     "@angular/router": "~10.2.0",
     "@angular/service-worker": "~10.2.0",
     "md5": "^2.3.0",
+    "ngx-infinite-scroll": "^10.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

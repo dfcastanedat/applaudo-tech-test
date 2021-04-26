@@ -1,6 +1,8 @@
 export interface ICharactersParams {
+  nameStartsWith?: string;
   name?: string;
-  storiesId?: number;
-  comicId?: number;
-  orderBy?: boolean;
+  stories?: number;
+  comics?: number;
+  orderBy?: string;
+  offset?: number;
 }
