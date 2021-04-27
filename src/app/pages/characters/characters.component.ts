@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { CharactersService, ComicsService } from '@domain/api';
 import { ICharacter } from '@domain/model/interfaces';
 import { IComic } from '@domain/model/interfaces/comic.interface';
@@ -7,17 +7,20 @@ import { getImgUrl } from '@utils/functions/get-img-url.function';
 import { IPreviewResult } from '@utils/interfaces';
 import { interval } from 'rxjs';
 import { debounce } from 'rxjs/operators';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
   styleUrls: ['./characters.component.scss'],
 })
-export class CharactersComponent implements OnInit {
+export class CharactersComponent implements OnInit, OnDestroy {
   constructor(
     private readonly charactersService: CharactersService,
     private readonly comicsService: ComicsService
   ) {}
+
+  subs = new SubSink();
 
   firstLoad = false;
   loading = false;
@@ -107,7 +110,7 @@ export class CharactersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCharacters();
-    this.filtersForm.valueChanges
+    this.subs.sink = this.filtersForm.valueChanges
       .pipe(debounce(() => interval(500)))
       .subscribe((value) => {
         if (value.comicId || value.nameStartsWith || value.orderByMethod) {
@@ -119,12 +122,12 @@ export class CharactersComponent implements OnInit {
             value.comicId,
             value.orderByMethod
           );
-        } else if (this.firstLoad) {
+        } else if (this.firstLoad && value.comics.length === 0) {
           this.charactersToDisplay = [];
           this.getCharacters();
         }
       });
-    this.filtersForm.controls.comics.valueChanges
+    this.subs.sink = this.filtersForm.controls.comics.valueChanges
       .pipe(debounce(() => interval(500)))
       .subscribe((value) => {
         this.previewComics = [];
@@ -150,5 +153,9 @@ export class CharactersComponent implements OnInit {
           );
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CharactersService } from '@domain/api';
 import { ICharacter } from '@domain/model/interfaces';
 import { IPreviewResult } from '@utils/interfaces';
 import { interval } from 'rxjs';
-import { debounce, map } from 'rxjs/operators';
+import { debounce } from 'rxjs/operators';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnDestroy {
   constructor(private readonly charactersService: CharactersService) {}
+
+  subs = new SubSink();
 
   searchForm = new FormGroup({
     toSearch: new FormControl(null, [Validators.required]),
@@ -21,7 +24,7 @@ export class LandingComponent implements OnInit {
   previewResults: IPreviewResult[] = [];
 
   ngOnInit(): void {
-    this.searchForm.valueChanges
+    this.subs.sink = this.searchForm.valueChanges
       .pipe(debounce(() => interval(500)))
       .subscribe(() => {
         this.previewResults = [];
@@ -47,5 +50,9 @@ export class LandingComponent implements OnInit {
           });
         });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

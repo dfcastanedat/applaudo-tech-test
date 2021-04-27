@@ -26,11 +26,15 @@
     </form>
     <div class="divisor"></div>
     <div class="card__grid" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
-        (scrolled)="onScrollDown()">
+        (scrolled)="onScrollDown()" *ngIf="charactersToDisplay.length > 0">
         <app-thubnail-item *ngFor="let character of charactersToDisplay"
             [imgUrl]="getImgUrl(character.thumbnail.path, 'portrait_xlarge', character.thumbnail.extension)"
             [type]="'character'" [name]="character.name" [itemId]="character.id">
         </app-thubnail-item>
+    </div>
+    <div class="empty-result" *ngIf="charactersToDisplay.length == 0 && !loading">
+        <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
+        <h1>No results</h1>
     </div>
     <div *ngIf="loading"
         [class]="charactersToDisplay.length > 0 ? 'items-master__loading new-page' : 'items-master__loading'">

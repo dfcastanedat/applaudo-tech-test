@@ -1,5 +1,5 @@
 <div class="card">
-    <img alt="Character" title="Character" [src]="imgUrl" *ngIf="type !== 'storie'" />
+    <img alt="Character" title="Character" [src]="imgUrl" *ngIf="(imgUrl)" class="card__image" />
     <img alt="Bookmark" title="Bookmark" src="assets/star.svg" class="card__bookmark" *ngIf="bookMark" />
     <span class="card__name" [routerLink]="['/', getItemLink()[0], getItemLink()[1]]">{{name}}</span>
 </div>

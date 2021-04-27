@@ -3,5 +3,9 @@ export const getImgUrl = (
   variant: string,
   type: string
 ) => {
-  return `${thumbnailUrl}/${variant}.${type}`;
+  if (thumbnailUrl && type) {
+    return `${thumbnailUrl}/${variant}.${type}`;
+  } else {
+    return null;
+  }
 };

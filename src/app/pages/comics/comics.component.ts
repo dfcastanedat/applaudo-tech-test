@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ComicsService } from '@domain/api';
 import { IComic } from '@domain/model/interfaces';
@@ -6,14 +6,16 @@ import { getImgUrl } from '@utils/functions/get-img-url.function';
 import { IPreviewResult } from '@utils/interfaces';
 import { interval } from 'rxjs';
 import { debounce } from 'rxjs/operators';
-
+import { SubSink } from 'subsink';
 @Component({
   selector: 'app-comics',
   templateUrl: './comics.component.html',
   styleUrls: ['./comics.component.scss'],
 })
-export class ComicsComponent implements OnInit {
+export class ComicsComponent implements OnInit, OnDestroy {
   constructor(private readonly comicsService: ComicsService) {}
+
+  subs = new SubSink();
 
   firstLoad = false;
   loading = false;
@@ -120,7 +122,7 @@ export class ComicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getComics();
-    this.filtersForm.valueChanges
+    this.subs.sink = this.filtersForm.valueChanges
       .pipe(debounce(() => interval(500)))
       .subscribe((value) => {
         console.log(value);
@@ -142,5 +144,9 @@ export class ComicsComponent implements OnInit {
           this.getComics();
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }
