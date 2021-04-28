@@ -164,7 +164,6 @@ export class ItemsMasterComponent implements OnInit, OnDestroy {
   onScrollDown(): void {
     this.offsetVal += 20;
     if (this.offsetVal < this.totalItemsAviable + 20) {
-      console.log(this.actualSelection);
       switch (this.actualSelection) {
         case this.posibleSelections[0]:
           this.getComics(null, null, null, null, this.offsetVal);
@@ -225,7 +224,6 @@ export class ItemsMasterComponent implements OnInit, OnDestroy {
         this.subs.sink = this.filtersForm.valueChanges
           .pipe(debounce(() => interval(500)))
           .subscribe((value) => {
-            console.log(value);
             if (
               value.titleStartsWith ||
               value.issueNumber ||
@@ -270,9 +268,8 @@ export class ItemsMasterComponent implements OnInit, OnDestroy {
               );
             } else if (
               this.firstLoad &&
-              value.comics &&
-              value.comics.length === 0 &&
-              value.nameStartsWith.length === 0
+              (!value.comics || value.comics.length === 0) &&
+              !value.nameStartsWith
             ) {
               this.itemsToDisplay = [];
               this.getCharacters();
@@ -311,7 +308,6 @@ export class ItemsMasterComponent implements OnInit, OnDestroy {
       default:
         break;
     }
-    console.log(this.actualSelection);
   }
 
   ngOnDestroy(): void {

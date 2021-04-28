@@ -26,7 +26,7 @@ export class ApiKey implements HttpInterceptor {
       },
     });
 
-    console.log('Intercepted api call', req);
+    // console.log('Intercepted api call', req);
 
     return next.handle(req);
   }

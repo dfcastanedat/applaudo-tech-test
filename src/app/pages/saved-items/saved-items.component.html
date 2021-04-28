@@ -1,39 +1,81 @@
 <div class="saved">
-    <div class="detail__picker">
-        <h1 *ngFor="let item of posibleSelections" (click)="actualSelection = item"
-            [class]="actualSelection === item ? 'detail__title selector' : 'detail__title selected'">
-            {{item}}</h1>
+  <div class="detail__picker">
+    <h1
+      *ngFor="let item of posibleSelections"
+      (click)="actualSelection = item"
+      [class]="
+        actualSelection !== item
+          ? 'detail__title selector'
+          : 'detail__title selected'
+      "
+    >
+      {{ item }}
+    </h1>
+  </div>
+  <div class="detail__divisor"></div>
+  <div [ngSwitch]="actualSelection">
+    <div class="card__grid detail-items" *ngSwitchCase="posibleSelections[0]">
+      <app-thubnail-item
+        *ngFor="let item of savedComics; index as i"
+        [imgUrl]="item.imgUrl"
+        [name]="item.name"
+        [itemId]="item.itemId"
+        [deleteIndex]="i"
+        [deleteAction]="true"
+        [type]="'comic'"
+      >
+      </app-thubnail-item>
+      <div class="empty-result" *ngIf="savedComics.length == 0">
+        <img
+          alt="Empty results"
+          title="Empty results"
+          src="/assets/empty.svg"
+          class="empty-result__image"
+        />
+        <h1 class="empty-result__text">No saved comics</h1>
+      </div>
     </div>
-    <div class="detail__divisor">
+    <div class="card__grid detail-items" *ngSwitchCase="posibleSelections[1]">
+      <app-thubnail-item
+        *ngFor="let item of savedCharacters; index as i"
+        [imgUrl]="item.imgUrl"
+        [name]="item.name"
+        [itemId]="item.itemId"
+        [deleteIndex]="i"
+        [deleteAction]="true"
+        [type]="'character'"
+      >
+      </app-thubnail-item>
+      <div class="empty-result" *ngIf="savedCharacters.length == 0">
+        <img
+          alt="Empty results"
+          title="Empty results"
+          src="/assets/empty.svg"
+          class="empty-result__image"
+        />
+        <h1 class="empty-result__text">No saved characters</h1>
+      </div>
     </div>
-    <div [ngSwitch]="actualSelection">
-        <div class="card__grid detail-items" *ngSwitchCase="posibleSelections[0]">
-            <app-thubnail-item *ngFor="let item of savedComics; index as i" [imgUrl]="item.imgUrl" [name]="item.name"
-                [itemId]="item.itemId" [deleteIndex]="i" [deleteAction]="true" [type]="'comic'">
-            </app-thubnail-item>
-            <div class="empty-result" *ngIf="savedComics.length == 0">
-                <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
-                <h1 class="empty-result__text">No saved comics</h1>
-            </div>
-        </div>
-        <div class="card__grid detail-items" *ngSwitchCase="posibleSelections[1]">
-            <app-thubnail-item *ngFor="let item of savedCharacters; index as i" [imgUrl]="item.imgUrl"
-                [name]="item.name" [itemId]="item.itemId" [deleteIndex]="i" [deleteAction]="true" [type]="'character'">
-            </app-thubnail-item>
-            <div class="empty-result" *ngIf="savedCharacters.length == 0">
-                <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
-                <h1 class="empty-result__text">No saved characters</h1>
-            </div>
-        </div>
-        <div class="card__grid detail-items" *ngSwitchCase="posibleSelections[2]">
-            <app-thubnail-item *ngFor="let item of savedStories; index as i" [imgUrl]="item.imgUrl" [name]="item.name"
-                [itemId]="item.itemId" [deleteIndex]="i" [deleteAction]="true" [type]="'storie'">
-            </app-thubnail-item>
-            <div class="empty-result" *ngIf="savedStories.length == 0">
-                <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
-                <h1 class="empty-result__text">No saved stories</h1>
-            </div>
-        </div>
+    <div class="card__grid detail-items" *ngSwitchCase="posibleSelections[2]">
+      <app-thubnail-item
+        *ngFor="let item of savedStories; index as i"
+        [imgUrl]="item.imgUrl"
+        [name]="item.name"
+        [itemId]="item.itemId"
+        [deleteIndex]="i"
+        [deleteAction]="true"
+        [type]="'storie'"
+      >
+      </app-thubnail-item>
+      <div class="empty-result" *ngIf="savedStories.length == 0">
+        <img
+          alt="Empty results"
+          title="Empty results"
+          src="/assets/empty.svg"
+          class="empty-result__image"
+        />
+        <h1 class="empty-result__text">No saved stories</h1>
+      </div>
     </div>
-
+  </div>
 </div>

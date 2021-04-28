@@ -35,6 +35,7 @@
   font-family: $font-Roboto-Condensed-Bold;
   margin: 0.5em 0 0.5em;
   text-transform: uppercase;
+  width: 80vw;
   &.subtitle {
     font-size: 32px;
   }
@@ -42,6 +43,7 @@
     font-size: 32px;
     margin: 0 0.2em;
     cursor: pointer;
+    width: auto;
   }
   &.selected {
     font-size: 32px;
@@ -49,6 +51,7 @@
     cursor: pointer;
     text-decoration: underline;
     color: $marvel-red;
+    width: auto;
   }
 }
 

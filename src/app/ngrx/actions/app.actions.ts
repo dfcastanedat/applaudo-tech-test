@@ -11,9 +11,7 @@ export const REMOVE_STORIE = 'REMOVE_STORIE';
 export class AddCharacterState implements Action {
   readonly type = ADD_CHARACTER;
 
-  constructor(public payload: IThumbnailItem) {
-    console.log(payload);
-  }
+  constructor(public payload: IThumbnailItem) {}
 }
 
 export class RemoveCharacterState implements Action {
@@ -23,9 +21,7 @@ export class RemoveCharacterState implements Action {
 
 export class AddComicState implements Action {
   readonly type = ADD_COMIC;
-  constructor(public payload: IThumbnailItem) {
-    console.log(payload);
-  }
+  constructor(public payload: IThumbnailItem) {}
 }
 
 export class RemoveComicState implements Action {

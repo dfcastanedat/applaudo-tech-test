@@ -6,7 +6,6 @@ import { CoreModule } from '@custom-modules/core.module';
 import { NavbarComponent, ThubnailItemComponent } from './pages/components';
 import { InputComponent } from './pages/components/input/input.component';
 import { LandingComponent } from '@pages/landing/landing.component';
-import { ButtonComponent } from './pages/components/button/button.component';
 import { LoadingComponent } from './pages/components/loading/loading.component';
 import { SavedItemsComponent } from './pages/saved-items/saved-items.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
@@ -18,7 +17,6 @@ import { ItemsMasterComponent } from './pages/items-master/items-master.componen
     NavbarComponent,
     InputComponent,
     LandingComponent,
-    ButtonComponent,
     LoadingComponent,
     ThubnailItemComponent,
     SavedItemsComponent,
