@@ -24,6 +24,7 @@
     "@angular/router": "~11.2.11",
     "@angular/service-worker": "~11.2.11",
     "@ngrx/store": "^11.1.1",
+    "http-server": "^0.12.3",
     "md5": "^2.3.0",
     "ngrx-store-localstorage": "^11.0.0",
     "ngx-infinite-scroll": "^10.0.1",
