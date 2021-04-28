@@ -13,6 +13,8 @@
 
 .navbar__brand {
   height: 5vh;
+  width: calc(5vh * 2.48);
+  width: auto;
   cursor: pointer;
 }
 
@@ -36,7 +38,7 @@
 
 @include screen-small {
   .navbar {
-    font-size: 16px;
+    font-size: 14px;
   }
   .navbar__navigation {
     right: 40%;

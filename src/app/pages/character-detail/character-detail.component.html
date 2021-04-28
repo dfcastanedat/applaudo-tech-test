@@ -35,7 +35,7 @@
             </div>
             <div class="empty-result" *ngIf="comics.length == 0 && !comicsLoading">
                 <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
-                <h1>No results</h1>
+                <h1 class="empty-result__text">No results</h1>
             </div>
         </ng-container>
         <ng-container *ngIf="!switchSelector">
@@ -55,7 +55,7 @@
             </div>
             <div class="empty-result" *ngIf="stories.length == 0 && !storiesLoading">
                 <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
-                <h1>No results</h1>
+                <h1 class="empty-result__text">No results</h1>
             </div>
         </ng-container>
     </ng-container>

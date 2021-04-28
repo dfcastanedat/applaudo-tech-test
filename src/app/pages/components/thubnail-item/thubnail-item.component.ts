@@ -56,7 +56,7 @@ export class ThubnailItemComponent implements OnInit, OnDestroy {
   }
 
   deleteItem(): void {
-    if (this.deleteIndex) {
+    if (this.deleteIndex !== null) {
       switch (this.type) {
         case 'character':
           this.store.dispatch(
@@ -64,7 +64,6 @@ export class ThubnailItemComponent implements OnInit, OnDestroy {
           );
           break;
         case 'comic':
-          console.log('DELETING COMIC');
           this.store.dispatch(
             new appActions.RemoveComicState(this.deleteIndex)
           );

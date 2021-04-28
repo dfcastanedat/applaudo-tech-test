@@ -33,6 +33,10 @@
             [name]="comic.title" [itemId]="comic.id">
         </app-thubnail-item>
     </div>
+    <div class="empty-result" *ngIf="comicssToDisplay.length == 0 && !loading">
+        <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
+        <h1 class="empty-result__text">No saved stories</h1>
+    </div>
     <div *ngIf="loading"
         [class]="comicssToDisplay.length > 0 ? 'items-master__loading new-page' : 'items-master__loading'">
         <app-loading></app-loading>

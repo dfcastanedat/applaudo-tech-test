@@ -1,3 +1,6 @@
+@import "__settings-dir";
+@import "__tools-dir";
+
 .saved {
   display: flex;
   flex-direction: column;
@@ -9,4 +12,33 @@
 
 .detail__title {
   text-transform: uppercase;
+}
+
+.card__grid {
+  overflow-x: hidden;
+  &.detail-items {
+    height: auto;
+    width: auto;
+  }
+}
+
+.empty-result {
+  width: 100vw;
+  height: auto;
+}
+
+@include screen-small {
+  .detail__title {
+    font-size: 24px;
+  }
+  .card__grid {
+    &.detail-items {
+      height: auto;
+      width: 80vw;
+      margin: 0 auto;
+    }
+  }
+  .empty-result {
+    width: 80vw;
+  }
 }
