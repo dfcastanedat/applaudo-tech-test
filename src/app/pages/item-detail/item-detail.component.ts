@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharactersService, ComicsService, StoriesService } from '@domain/api';
 import { ICharacter, IComic, IStorie } from '@domain/model/interfaces';
+import {
+  COMIC_DETAIL_ROUTE,
+  CHARACTER_DETAIL_ROUTE,
+  STORIE_DETAIL_ROUTE,
+  CHARACTERS_ROUTE,
+  STORIES_ROUTE,
+  COMICS_ROUTE,
+} from '@utils/constants';
 import { getImgUrl } from '@utils/functions/get-img-url.function';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
   styleUrls: ['./item-detail.component.scss'],
 })
-export class ItemDetailComponent implements OnInit {
+export class ItemDetailComponent implements OnInit, OnDestroy {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly charactersService: CharactersService,
@@ -17,9 +26,15 @@ export class ItemDetailComponent implements OnInit {
     private readonly storiesService: StoriesService
   ) {}
 
+  subs = new SubSink();
+
   itemId = this.activatedRoute.snapshot.params.id;
 
-  posibleSelections = ['comic', 'character', 'storie'];
+  posibleSelections = [
+    COMIC_DETAIL_ROUTE,
+    CHARACTER_DETAIL_ROUTE,
+    STORIE_DETAIL_ROUTE,
+  ];
   actualSelection = '';
 
   item: ICharacter | IStorie | IComic;
@@ -40,7 +55,7 @@ export class ItemDetailComponent implements OnInit {
   charactersOffset = 0;
   charactersLoading = false;
 
-  switchAviableSelections = ['comics', 'stories'];
+  switchAviableSelections = [];
   switchSelection = '';
 
   getImgUrl = getImgUrl;
@@ -95,12 +110,12 @@ export class ItemDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.activatedRoute.url.subscribe((val) => {
+    this.subs.sink = this.activatedRoute.url.subscribe((val) => {
       this.actualSelection = val[0].path;
     });
     switch (this.actualSelection) {
       case this.posibleSelections[0]:
-        this.switchAviableSelections = ['characters', 'stories'];
+        this.switchAviableSelections = [CHARACTERS_ROUTE, STORIES_ROUTE];
         this.switchSelection = this.switchAviableSelections[0];
         this.getStories(null, this.itemId);
         this.getCharacters(this.itemId);
@@ -110,7 +125,7 @@ export class ItemDetailComponent implements OnInit {
         });
         break;
       case this.posibleSelections[1]:
-        this.switchAviableSelections = ['comics', 'stories'];
+        this.switchAviableSelections = [COMICS_ROUTE, STORIES_ROUTE];
         this.switchSelection = this.switchAviableSelections[0];
         this.loading = true;
         this.charactersService
@@ -124,7 +139,7 @@ export class ItemDetailComponent implements OnInit {
         this.getStories(this.itemId);
         break;
       case this.posibleSelections[2]:
-        this.switchAviableSelections = ['characters', 'comics'];
+        this.switchAviableSelections = [CHARACTERS_ROUTE, COMICS_ROUTE];
         this.switchSelection = this.switchAviableSelections[0];
         this.storiesService.getStorieById(this.itemId).subscribe((res) => {
           this.item = res.data.results[0];
@@ -136,5 +151,9 @@ export class ItemDetailComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

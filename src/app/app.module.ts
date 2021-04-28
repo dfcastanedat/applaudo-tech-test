@@ -13,6 +13,7 @@ import { ButtonComponent } from './pages/components/button/button.component';
 import { LoadingComponent } from './pages/components/loading/loading.component';
 import { SavedItemsComponent } from './pages/saved-items/saved-items.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
+import { ItemsMasterComponent } from './pages/items-master/items-master.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
     ThubnailItemComponent,
     SavedItemsComponent,
     ItemDetailComponent,
+    ItemsMasterComponent,
   ],
   imports: [
     CoreModule,

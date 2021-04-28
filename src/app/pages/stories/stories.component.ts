@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { StoriesService } from '@domain/api';
 import { IStorie } from '@domain/model/interfaces';
+import {
+  CHARACTERS_ROUTE,
+  COMICS_ROUTE,
+  STORIES_ROUTE,
+} from '@utils/constants';
 import { getImgUrl } from '@utils/functions/get-img-url.function';
 
 @Component({
@@ -12,6 +17,9 @@ export class StoriesComponent implements OnInit {
   constructor(private readonly storiesService: StoriesService) {}
 
   loading = false;
+
+  posibleSelections = [COMICS_ROUTE, CHARACTERS_ROUTE, STORIES_ROUTE];
+  actualSelection = '';
 
   storiesToDisplay: IStorie[] = [];
 

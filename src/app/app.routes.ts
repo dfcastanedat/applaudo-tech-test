@@ -15,6 +15,7 @@ import {
 } from '@utils/constants';
 import { SavedItemsComponent } from '@pages/saved-items/saved-items.component';
 import { ItemDetailComponent } from '@pages/item-detail/item-detail.component';
+import { ItemsMasterComponent } from '@pages/items-master/items-master.component';
 
 export const ROUTES: Routes = [
   {
@@ -23,15 +24,15 @@ export const ROUTES: Routes = [
   },
   {
     path: CHARACTERS_ROUTE,
-    component: CharactersComponent,
+    component: ItemsMasterComponent,
   },
   {
     path: COMICS_ROUTE,
-    component: ComicsComponent,
+    component: ItemsMasterComponent,
   },
   {
     path: STORIES_ROUTE,
-    component: StoriesComponent,
+    component: ItemsMasterComponent,
   },
   {
     path: SAVED_ITEMS_ROUTE,

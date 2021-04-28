@@ -1,0 +1,17 @@
+<div class="items-master">
+    <div class="card__grid" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
+        (scrolled)="onScrollDown()">
+        <app-thubnail-item *ngFor="let item of itemsToDisplay"
+            [imgUrl]="getImgUrl(item?.thumbnail?.path, 'portrait_xlarge', item?.thumbnail?.extension)" [type]="'storie'"
+            [name]="item.title" [itemId]="item.id">
+        </app-thubnail-item>
+    </div>
+    <div class="empty-result" *ngIf="itemsToDisplay.length == 0 && !loading">
+        <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
+        <h1 class="empty-result__text">No saved stories</h1>
+    </div>
+    <div *ngIf="loading"
+        [class]="itemsToDisplay.length > 0 ? 'items-master__loading new-page' : 'items-master__loading'">
+        <app-loading></app-loading>
+    </div>
+</div>

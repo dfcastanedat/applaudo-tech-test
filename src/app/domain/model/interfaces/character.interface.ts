@@ -4,16 +4,16 @@ import { IStorie } from './storie.interface';
 
 export interface ICharacter {
   id: number;
-  name: string;
+  name?: string;
   title?: string;
-  description: string;
-  modified: Date;
-  resourceUrl: string;
-  urls: IUrls[];
-  thumbnail: {
+  description?: string;
+  modified?: Date;
+  resourceUrl?: string;
+  urls?: IUrls[];
+  thumbnail?: {
     path: string;
     extension: string;
   };
-  comics: IComic[];
-  stories: IStorie[];
+  comics?: IComic[];
+  stories?: IStorie[];
 }
