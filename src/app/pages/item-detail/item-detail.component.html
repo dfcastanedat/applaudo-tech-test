@@ -1,0 +1,85 @@
+<div class="detail">
+    <div *ngIf="loading" class="detail__loading">
+        <app-loading></app-loading>
+    </div>
+    <ng-container *ngIf="!loading">
+        <h1 class="detail__title">{{item.title}}</h1>
+        <div class="detail__intro">
+            <img class="detail__photo" *ngIf="actualSelection !== posibleSelections[2]"
+                [src]="getImgUrl(item.thumbnail.path, 'portrait_incredible', item.thumbnail.extension)" alt="Character"
+                title="Character" />
+            <div
+                [class]="actualSelection === posibleSelections[2] ? 'detail__description storie' : 'detail__description'">
+                {{item.description && item.description.length>0 ? item.description :
+                'No description available'}}</div>
+        </div>
+        <div class="detail__divisor"></div>
+        <div class="detail__picker">
+            <h1 *ngFor="let item of switchAviableSelections"
+                [class]="switchSelection !== item ? 'detail__title selector' : 'detail__title selected'"
+                (click)="switchSelection = item">{{item}}</h1>
+        </div>
+        <ng-container [ngSwitch]="switchSelection">
+            <ng-container *ngSwitchCase="'comics'">
+                <div class="card__grid detail-items" *ngIf="comics.length > 0">
+                    <app-thubnail-item *ngFor="let item of comics"
+                        [imgUrl]="getImgUrl(item.thumbnail.path, 'portrait_xlarge', item.thumbnail.extension)"
+                        [type]="'comic'" [name]="item.title" [itemId]="item.id">
+                    </app-thubnail-item>
+                    <button (click)="getComics(itemId, null, comicsOffset)"
+                        *ngIf="!(this.comicsOffset + 20 >= this.totalComicsAviable + 20)">
+                        LOAD MORE
+                    </button>
+                    <div [class]="comics.length > 0 ? 'detail__loading-items with-content': 'detail__loading-items'"
+                        *ngIf="comicsLoading">
+                        <app-loading></app-loading>
+                    </div>
+                </div>
+                <div class="empty-result" *ngIf="comics.length == 0 && !comicsLoading">
+                    <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
+                    <h1 class="empty-result__text">No results</h1>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'stories'">
+                <div class="card__grid detail-items" *ngIf="stories.length > 0">
+                    <app-thubnail-item *ngFor="let item of stories" [type]="'storie'" [name]="item.title"
+                        [imgUrl]="getImgUrl(item?.thumbnail?.path, 'portrait_xlarge', item?.thumbnail?.extension)"
+                        [itemId]="item.id">
+                    </app-thubnail-item>
+                    <button (click)="getStories(itemId, null, storiesOffset)"
+                        *ngIf="!(this.storiesOffset + 20 >= this.totalStoriesAviable + 20)">
+                        LOAD MORE
+                    </button>
+                    <div [class]="stories.length > 0 ? 'detail__loading-items with-content': 'detail__loading-items'"
+                        *ngIf="storiesLoading">
+                        <app-loading></app-loading>
+                    </div>
+                </div>
+                <div class="empty-result" *ngIf="stories.length == 0 && !storiesLoading">
+                    <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
+                    <h1 class="empty-result__text">No results</h1>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'characters'">
+                <div class="card__grid detail-items" *ngIf="characters.length > 0">
+                    <app-thubnail-item *ngFor="let item of characters"
+                        [imgUrl]="getImgUrl(item.thumbnail.path, 'portrait_xlarge', item.thumbnail.extension)"
+                        [type]="'character'" [name]="item.name" [itemId]="item.id">
+                    </app-thubnail-item>
+                    <button (click)="getCharacters(itemId, null, charactersOffset)"
+                        *ngIf="!(this.charactersOffset + 20 >= this.totalCharactersAviable + 20)">
+                        LOAD MORE
+                    </button>
+                    <div [class]="characters.length > 0 ? 'detail__loading-items with-content': 'detail__loading-items'"
+                        *ngIf="charactersLoading">
+                        <app-loading></app-loading>
+                    </div>
+                </div>
+                <div class="empty-result" *ngIf="characters.length == 0 && !charactersLoading">
+                    <img alt="Empty results" title="Empty results" src="/assets/empty.svg" class="empty-result__image">
+                    <h1 class="empty-result__text">No results</h1>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>

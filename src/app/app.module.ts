@@ -10,11 +10,9 @@ import { StoriesComponent } from './pages/stories/stories.component';
 import { InputComponent } from './pages/components/input/input.component';
 import { LandingComponent } from '@pages/landing/landing.component';
 import { ButtonComponent } from './pages/components/button/button.component';
-import { CharacterDetailComponent } from './pages/character-detail/character-detail.component';
 import { LoadingComponent } from './pages/components/loading/loading.component';
-import { StorieDetailComponent } from './pages/storie-detail/storie-detail.component';
-import { ComicDetailComponent } from './pages/comic-detail/comic-detail.component';
 import { SavedItemsComponent } from './pages/saved-items/saved-items.component';
+import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +24,10 @@ import { SavedItemsComponent } from './pages/saved-items/saved-items.component';
     InputComponent,
     LandingComponent,
     ButtonComponent,
-    CharacterDetailComponent,
     LoadingComponent,
     ThubnailItemComponent,
-    StorieDetailComponent,
-    ComicDetailComponent,
     SavedItemsComponent,
+    ItemDetailComponent,
   ],
   imports: [
     CoreModule,

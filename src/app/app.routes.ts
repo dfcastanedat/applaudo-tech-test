@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { CharactersComponent } from '@pages/characters/characters.component';
 import { ComicsComponent } from '@pages/comics/comics.component';
-import { CharacterDetailComponent } from '@pages/character-detail/character-detail.component';
 import { LandingComponent } from '@pages/landing/landing.component';
 import { StoriesComponent } from '@pages/stories/stories.component';
 import {
@@ -14,9 +13,8 @@ import {
   STORIES_ROUTE,
   STORIE_DETAIL_ROUTE,
 } from '@utils/constants';
-import { ComicDetailComponent } from '@pages/comic-detail/comic-detail.component';
-import { StorieDetailComponent } from '@pages/storie-detail/storie-detail.component';
 import { SavedItemsComponent } from '@pages/saved-items/saved-items.component';
+import { ItemDetailComponent } from '@pages/item-detail/item-detail.component';
 
 export const ROUTES: Routes = [
   {
@@ -41,14 +39,14 @@ export const ROUTES: Routes = [
   },
   {
     path: `${CHARACTER_DETAIL_ROUTE}/:id`,
-    component: CharacterDetailComponent,
+    component: ItemDetailComponent,
   },
   {
     path: `${COMIC_DETAIL_ROUTE}/:id`,
-    component: ComicDetailComponent,
+    component: ItemDetailComponent,
   },
   {
     path: `${STORIE_DETAIL_ROUTE}/:id`,
-    component: StorieDetailComponent,
+    component: ItemDetailComponent,
   },
 ];

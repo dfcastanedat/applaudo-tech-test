@@ -17,7 +17,6 @@ export function reducer(
     case appActions.REMOVE_CHARACTER:
       const charactersAux = [...state.characters];
       charactersAux.splice(action.payload, 1);
-      console.table(charactersAux);
       return {
         ...state,
         characters: charactersAux,

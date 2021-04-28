@@ -5,6 +5,7 @@ import { IStorie } from './storie.interface';
 export interface ICharacter {
   id: number;
   name: string;
+  title?: string;
   description: string;
   modified: Date;
   resourceUrl: string;
