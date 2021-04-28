@@ -1,15 +1,32 @@
 <div class="landing">
-    <img alt="Logo" src="assets/marvelLogo.svg" title="Logo" class="landing__logo" />
-    <form class="landing__form" [formGroup]="searchForm" (ngSubmit)="searchByName()">
-        <div class="landing__input">
-            <app-input [fControl]="searchForm.controls.toSearch" [placeHolder]="'Type a characters name'"
-                [label]="'Search'" [previewResults]="previewResults">
-            </app-input>
-        </div>
-        <!-- <div class="landing__button">
+  <header>
+    <img
+      alt="Logo"
+      src="assets/marvelLogo.svg"
+      title="Logo"
+      class="landing__logo"
+    />
+  </header>
+  <form
+    class="landing__form"
+    [formGroup]="searchForm"
+    (ngSubmit)="searchByName()"
+  >
+    <div class="landing__input">
+      <app-input
+        [fControl]="searchForm.controls.toSearch"
+        [placeHolder]="'Type a characters name'"
+        [label]="'Search'"
+        [previewResults]="previewResults"
+      >
+      </app-input>
+    </div>
+    <!-- <div class="landing__button">
             <app-button [type]="'submit'" [label]="'SEARCH'" [disabled]="!searchForm.valid"></app-button>
         </div> -->
-    </form>
-    <span class="landing__about">App developed as frontend technical test for Applaudo Studios, by Daniel Castañeda,
-        2021</span>
+  </form>
+  <span class="landing__about"
+    >App developed as frontend technical test for Applaudo Studios, by Daniel
+    Castañeda, 2021</span
+  >
 </div>

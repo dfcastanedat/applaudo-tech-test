@@ -1,0 +1,66 @@
+@import "__settings-dir";
+@import "__tools-dir";
+
+.items-master__loading {
+  width: 100vw;
+  height: 94vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.new-page {
+    height: 10vh;
+  }
+}
+
+.items-master__filters {
+  height: 9vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.items-master__filters-input {
+  width: 28%;
+}
+
+.items-master__cards {
+  font-size: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 2em 2em;
+  width: 90%;
+  padding: 1em 2em;
+  margin: 0 auto;
+}
+
+.comics-filter {
+  width: 20%;
+}
+
+@include screen-small {
+  .comics-filter {
+    width: 80%;
+  }
+  //CARDS MASTER
+
+  .items-master__cards {
+    font-size: 16px;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    width: 80%;
+    margin: 0;
+  }
+
+  .items-master__filters {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  .items-master__filters-input {
+    width: 80%;
+    margin: 0.3em 0;
+  }
+}
