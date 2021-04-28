@@ -3,6 +3,7 @@ import {
   BASE_ROUTE,
   CHARACTERS_ROUTE,
   COMICS_ROUTE,
+  SAVED_ITEMS_ROUTE,
   STORIES_ROUTE,
 } from '@utils/constants';
 import { INavbarItem } from '@utils/interfaces';
@@ -25,6 +26,10 @@ export class NavbarComponent {
     {
       name: 'STORIES',
       url: STORIES_ROUTE,
+    },
+    {
+      name: 'SAVED',
+      url: SAVED_ITEMS_ROUTE,
     },
   ];
 

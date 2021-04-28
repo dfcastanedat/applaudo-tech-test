@@ -10,11 +10,13 @@ import {
   CHARACTER_DETAIL_ROUTE,
   COMICS_ROUTE,
   COMIC_DETAIL_ROUTE,
+  SAVED_ITEMS_ROUTE,
   STORIES_ROUTE,
   STORIE_DETAIL_ROUTE,
 } from '@utils/constants';
 import { ComicDetailComponent } from '@pages/comic-detail/comic-detail.component';
 import { StorieDetailComponent } from '@pages/storie-detail/storie-detail.component';
+import { SavedItemsComponent } from '@pages/saved-items/saved-items.component';
 
 export const ROUTES: Routes = [
   {
@@ -32,6 +34,10 @@ export const ROUTES: Routes = [
   {
     path: STORIES_ROUTE,
     component: StoriesComponent,
+  },
+  {
+    path: SAVED_ITEMS_ROUTE,
+    component: SavedItemsComponent,
   },
   {
     path: `${CHARACTER_DETAIL_ROUTE}/:id`,

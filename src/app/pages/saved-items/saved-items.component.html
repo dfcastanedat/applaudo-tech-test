@@ -1,0 +1,27 @@
+<div class="saved">
+    <div class="detail__picker">
+        <h1 *ngFor="let item of posibleSelections" (click)="actualSelection = item"
+            [class]="actualSelection === item ? 'detail__title selector' : 'detail__title selected'">
+            {{item}}</h1>
+    </div>
+    <div class="detail__divisor">
+    </div>
+    <div [ngSwitch]="actualSelection">
+        <div class="card__grid detail-items" *ngSwitchCase="posibleSelections[0]">
+            <app-thubnail-item *ngFor="let item of savedComics; index as i" [imgUrl]="item.imgUrl" [name]="item.name"
+                [itemId]="item.itemId" [deleteIndex]="i" [deleteAction]="true" [type]="'comic'">
+            </app-thubnail-item>
+        </div>
+        <div class="card__grid detail-items" *ngSwitchCase="posibleSelections[1]">
+            <app-thubnail-item *ngFor="let item of savedCharacters; index as i" [imgUrl]="item.imgUrl"
+                [name]="item.name" [itemId]="item.itemId" [deleteIndex]="i" [deleteAction]="true" [type]="'character'">
+            </app-thubnail-item>
+        </div>
+        <div class="card__grid detail-items" *ngSwitchCase="posibleSelections[2]">
+            <app-thubnail-item *ngFor="let item of savedStories; index as i" [imgUrl]="item.imgUrl" [name]="item.name"
+                [itemId]="item.itemId" [deleteIndex]="i" [deleteAction]="true" [type]="'storie'">
+            </app-thubnail-item>
+        </div>
+    </div>
+
+</div>

@@ -14,6 +14,7 @@ import { CharacterDetailComponent } from './pages/character-detail/character-det
 import { LoadingComponent } from './pages/components/loading/loading.component';
 import { StorieDetailComponent } from './pages/storie-detail/storie-detail.component';
 import { ComicDetailComponent } from './pages/comic-detail/comic-detail.component';
+import { SavedItemsComponent } from './pages/saved-items/saved-items.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ComicDetailComponent } from './pages/comic-detail/comic-detail.componen
     ThubnailItemComponent,
     StorieDetailComponent,
     ComicDetailComponent,
+    SavedItemsComponent,
   ],
   imports: [
     CoreModule,
